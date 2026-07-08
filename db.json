@@ -7,7 +7,8 @@
       "year": 2024,
       "rating": 9.1,
       "image": "https://picsum.photos/id/1018/400/600",
-      "description": "Seorang pejuang Saxon harus memilih antara keluarga angkatnya dan tanah kelahirannya."
+      "description": "Seorang pejuang Saxon harus memilih antara keluarga angkatnya dan tanah kelahirannya.",
+      "trailer": "https://www.youtube.com/embed/WxPApTGWwas"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "year": 2023,
       "rating": 8.8,
       "image": "https://picsum.photos/id/1015/400/600",
-      "description": "Seorang tentara bayaran menjalankan misi berbahaya untuk menyelamatkan seorang anak."
+      "description": "Seorang tentara bayaran menjalankan misi berbahaya untuk menyelamatkan seorang anak.",
+      "trailer": "https://www.youtube.com/embed/L6P3nI6VnlY"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "year": 2022,
       "rating": 9.3,
       "image": "https://picsum.photos/id/1016/400/600",
-      "description": "Petualangan epik di planet Pandora dengan visual yang memukau."
+      "description": "Petualangan epik di planet Pandora dengan visual yang memukau.",
+      "trailer": "https://www.youtube.com/embed/5PSNL1qE6VY"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "year": 2023,
       "rating": 9.0,
       "image": "https://picsum.photos/id/1025/400/600",
-      "description": "Mantan pembunuh bayaran kembali menghadapi dunia kriminal."
+      "description": "Mantan pembunuh bayaran kembali menghadapi dunia kriminal.",
+      "trailer": "https://www.youtube.com/embed/qEVUtrk8_B4"
     }
   ]
 }

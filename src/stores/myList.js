@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useMyListStore = defineStore("myList", {
   state: () => ({
-    favorites: [],
+    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   }),
 
   actions: {
@@ -13,12 +13,22 @@ export const useMyListStore = defineStore("myList", {
 
       if (!exists) {
         this.favorites.push(movie);
+        this.saveFavorites();
       }
     },
 
     removeMovie(id) {
       this.favorites = this.favorites.filter(
         (movie) => movie.id !== id
+      );
+
+      this.saveFavorites();
+    },
+
+    saveFavorites() {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(this.favorites)
       );
     },
   },

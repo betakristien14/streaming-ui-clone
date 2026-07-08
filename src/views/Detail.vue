@@ -14,10 +14,20 @@
       <p>{{ movie.description }}</p>
 
       <div class="buttons">
-        <button class="play">▶ Play</button>
+        <button
+        class="play"
+        @click="showTrailer = true"
+      >
+        ▶ Play
+      </button>
 
-        <button class="favorite" @click="addToMyList">
-          ❤️ My List
+        <button
+          class="favorite"
+          :class="{ added: isFavorite }"
+          :disabled="isFavorite"
+          @click="addToMyList"
+        >
+          {{ isFavorite ? "✅ Added" : "❤️ My List" }}
         </button>
 
         <button class="back" @click="goBack">
@@ -30,21 +40,34 @@
   <div v-else class="loading">
     <h2>Loading...</h2>
   </div>
+  <TrailerModal
+  v-if="movie"
+  :show="showTrailer"
+  :trailer="movie.trailer"
+  @close="showTrailer = false"
+/>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { getMovies } from "@/services/movieService";
 import { useMyListStore } from "@/stores/myList";
+import TrailerModal from "@/components/TrailerModal.vue";
 
 const route = useRoute();
 const router = useRouter();
 
 const myListStore = useMyListStore();
+const isFavorite = computed(() => {
+  return myListStore.favorites.some(
+    (item) => item.id === movie.value?.id
+  );
+});
 
 const movie = ref(null);
+const showTrailer = ref(false);
 
 onMounted(async () => {
   const movies = await getMovies();
@@ -52,6 +75,8 @@ onMounted(async () => {
   movie.value = movies.find(
     (item) => item.id == route.params.id
   );
+
+  console.log(movie.value);
 });
 
 const goBack = () => {
@@ -126,6 +151,14 @@ const addToMyList = () => {
 
 .favorite:hover {
   background: #e50914;
+}
+.favorite:disabled {
+  background: #28a745;
+  cursor: not-allowed;
+}
+
+.favorite.added {
+  background: #28a745;
 }
 
 .back {
