@@ -1,0 +1,40 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "The Last Kingdom",
+      "category": "Trending",
+      "year": 2024,
+      "rating": 9.1,
+      "image": "https://picsum.photos/id/1018/400/600",
+      "description": "Seorang pejuang Saxon harus memilih antara keluarga angkatnya dan tanah kelahirannya."
+    },
+    {
+      "id": 2,
+      "title": "Extraction",
+      "category": "Trending",
+      "year": 2023,
+      "rating": 8.8,
+      "image": "https://picsum.photos/id/1015/400/600",
+      "description": "Seorang tentara bayaran menjalankan misi berbahaya untuk menyelamatkan seorang anak."
+    },
+    {
+      "id": 3,
+      "title": "Avatar",
+      "category": "Popular",
+      "year": 2022,
+      "rating": 9.3,
+      "image": "https://picsum.photos/id/1016/400/600",
+      "description": "Petualangan epik di planet Pandora dengan visual yang memukau."
+    },
+    {
+      "id": 4,
+      "title": "John Wick",
+      "category": "Popular",
+      "year": 2023,
+      "rating": 9.0,
+      "image": "https://picsum.photos/id/1025/400/600",
+      "description": "Mantan pembunuh bayaran kembali menghadapi dunia kriminal."
+    }
+  ]
+}
