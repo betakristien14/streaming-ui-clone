@@ -120,3 +120,46 @@ onUnmounted(() => {
   color: #e50914;
 }
 </style>
+
+/* ===============================
+   TABLET
+================================= */
+
+@media (max-width: 992px) {
+
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .menu {
+    gap: 20px;
+  }
+
+}
+
+/* ===============================
+   MOBILE
+================================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .menu {
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .icons {
+    gap: 12px;
+    font-size: 18px;
+  }
+
+}

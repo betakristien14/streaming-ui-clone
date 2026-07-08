@@ -160,3 +160,25 @@ button {
   background: #e50914;
 }
 </style>
+
+@media (max-width: 768px) {
+
+  .content {
+    margin-left: 25px;
+    margin-right: 25px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .buttons {
+    flex-wrap: wrap;
+  }
+
+}
