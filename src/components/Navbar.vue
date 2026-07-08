@@ -1,5 +1,5 @@
 <template>
-  <nav class="['navbar', { scrolled: isScrolled}]">
+  <nav :class="['navbar', { scrolled: isScrolled }]">
     <div class="logo">
       StreamFlix
     </div>
@@ -41,6 +41,7 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 70px;
 
@@ -54,7 +55,7 @@ onUnmounted(() => {
   background: transparent;
   color: white;
 
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 
   z-index: 1000;
 }
@@ -67,31 +68,43 @@ onUnmounted(() => {
 .logo {
   font-size: 28px;
   font-weight: bold;
-  color: #E50914;
+  color: #e50914;
+  cursor: pointer;
 }
 
 .menu {
   display: flex;
+  align-items: center;
   gap: 30px;
+
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu li {
   cursor: pointer;
-  transition: .3s;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
 .menu li:hover {
-  color: #E50914;
+  color: #e50914;
 }
 
 .icons {
   display: flex;
+  align-items: center;
   gap: 20px;
   font-size: 22px;
 }
 
 .icons i {
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icons i:hover {
+  color: #e50914;
 }
 </style>

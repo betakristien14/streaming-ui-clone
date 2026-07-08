@@ -38,7 +38,7 @@ defineProps({
 
 <style scoped lang="scss">
 .hero {
-  height: 90vh;
+  height: 80vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

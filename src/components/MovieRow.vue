@@ -29,6 +29,8 @@ defineProps({
 .movie-row h2 {
   color: white;
   margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .row {
@@ -36,14 +38,16 @@ defineProps({
   gap: 20px;
   overflow-x: auto;
   padding-bottom: 10px;
+
+  scroll-behavior: smooth;
 }
 
 .row::-webkit-scrollbar {
-  height: 8px;
+  display: none;
 }
 
-.row::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 10px;
+.row {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
