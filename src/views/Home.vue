@@ -37,6 +37,9 @@
 
       <p v-else>Loading...</p>
     </div>
+
+    <!-- Tambahkan di sini -->
+    <Footer />
   </div>
 </template>
 
@@ -47,6 +50,7 @@ import Navbar from "@/components/Navbar.vue";
 import HeroBanner from "@/components/HeroBanner.vue";
 import MovieRow from "@/components/MovieRow.vue";
 import SearchBar from "@/components/SearchBar.vue";
+import Footer from "@/components/Footer.vue";
 
 import { getMovies } from "@/services/movieService";
 

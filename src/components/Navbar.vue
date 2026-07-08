@@ -5,10 +5,17 @@
     </div>
 
     <ul class="menu">
-      <li>Home</li>
-      <li>Movies</li>
-      <li>Series</li>
-      <li>My List</li>
+      <li>
+        <RouterLink to="/">Home</RouterLink>
+      </li>
+
+      <li>
+        <RouterLink to="/my-list">My List</RouterLink>
+      </li>
+
+      <li>
+        <RouterLink to="/about">About</RouterLink>
+      </li>
     </ul>
 
     <div class="icons">
@@ -20,6 +27,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import { RouterLink } from "vue-router";
 
 const isScrolled = ref(false);
 
@@ -56,7 +64,6 @@ onUnmounted(() => {
   color: white;
 
   transition: all 0.3s ease;
-
   z-index: 1000;
 }
 
@@ -83,12 +90,17 @@ onUnmounted(() => {
 }
 
 .menu li {
-  cursor: pointer;
   font-size: 16px;
+}
+
+/* RouterLink */
+.menu a {
+  text-decoration: none;
+  color: white;
   transition: color 0.3s ease;
 }
 
-.menu li:hover {
+.menu a:hover {
   color: #e50914;
 }
 

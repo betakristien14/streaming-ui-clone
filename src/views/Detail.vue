@@ -15,7 +15,14 @@
 
       <div class="buttons">
         <button class="play">▶ Play</button>
-        <button class="back" @click="goBack">← Kembali</button>
+
+        <button class="favorite" @click="addToMyList">
+          ❤️ My List
+        </button>
+
+        <button class="back" @click="goBack">
+          ← Kembali
+        </button>
       </div>
     </div>
   </div>
@@ -28,10 +35,14 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 import { getMovies } from "@/services/movieService";
+import { useMyListStore } from "@/stores/myList";
 
 const route = useRoute();
 const router = useRouter();
+
+const myListStore = useMyListStore();
 
 const movie = ref(null);
 
@@ -45,6 +56,12 @@ onMounted(async () => {
 
 const goBack = () => {
   router.push("/");
+};
+
+const addToMyList = () => {
+  myListStore.addMovie(movie.value);
+
+  alert(`${movie.value.title} berhasil ditambahkan ke My List!`);
 };
 </script>
 
@@ -95,6 +112,20 @@ const goBack = () => {
   padding: 12px 24px;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.favorite {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.favorite:hover {
+  background: #e50914;
 }
 
 .back {
