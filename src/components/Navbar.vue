@@ -1,9 +1,11 @@
 <template>
   <nav :class="['navbar', { scrolled: isScrolled }]">
+    <!-- Logo -->
     <div class="logo">
-      StreamFlix
+      <RouterLink to="/">StreamFlix</RouterLink>
     </div>
 
+    <!-- Menu -->
     <ul class="menu">
       <li>
         <RouterLink to="/">Home</RouterLink>
@@ -18,21 +20,88 @@
       </li>
     </ul>
 
-    <div class="icons">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-user-circle"></i>
+    <!-- Right Section -->
+    <div class="right-section">
+
+      <!-- Search -->
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+
+        <input
+          type="text"
+          placeholder="Cari film..."
+          v-model="keyword"
+          @input="searchMovie"
+        />
+      </div>
+
+      <!-- Belum Login -->
+      <RouterLink
+        v-if="!user"
+        to="/login"
+        class="login-btn"
+      >
+        Login
+      </RouterLink>
+
+      <!-- Sudah Login -->
+      <div
+        v-else
+        class="user-menu"
+      >
+        <span class="username">
+          👋 {{ user.name }}
+        </span>
+
+        <button
+          class="logout-btn"
+          @click="logout"
+        >
+          Logout
+        </button>
+      </div>
+
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import { RouterLink } from "vue-router";
+import {
+  ref,
+  computed,
+  onMounted,
+  onUnmounted,
+} from "vue";
+
+import {
+  RouterLink,
+  useRouter,
+} from "vue-router";
+
+import { useAuthStore } from "@/stores/authStore";
+
+const emit = defineEmits(["search"]);
+
+const keyword = ref("");
+
+const searchMovie = () => {
+  emit("search", keyword.value);
+};
 
 const isScrolled = ref(false);
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50;
+};
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const user = computed(() => authStore.user);
+
+const logout = () => {
+  authStore.logout();
+  router.push("/login");
 };
 
 onMounted(() => {
@@ -61,9 +130,7 @@ onUnmounted(() => {
   box-sizing: border-box;
 
   background: transparent;
-  color: white;
-
-  transition: all 0.3s ease;
+  transition: 0.3s;
   z-index: 1000;
 }
 
@@ -72,94 +139,157 @@ onUnmounted(() => {
   backdrop-filter: blur(8px);
 }
 
-.logo {
-  font-size: 28px;
-  font-weight: bold;
+/* Logo */
+
+.logo a {
   color: #e50914;
-  cursor: pointer;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
 }
+
+/* Menu */
 
 .menu {
   display: flex;
-  align-items: center;
   gap: 30px;
-
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
-.menu li {
-  font-size: 16px;
-}
-
-/* RouterLink */
 .menu a {
-  text-decoration: none;
   color: white;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu .router-link-active {
   color: #e50914;
 }
 
-.icons {
+/* Right */
+
+.right-section {
   display: flex;
   align-items: center;
-  gap: 20px;
-  font-size: 22px;
+  gap: 15px;
 }
 
-.icons i {
+/* Search */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 15px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
+}
+
+.search-box i {
+  color: white;
+}
+
+.search-box input {
+  width: 220px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: white;
+}
+
+.search-box input::placeholder {
+  color: #ccc;
+}
+
+/* Login */
+
+.login-btn {
+  background: #e50914;
+  color: white;
+
+  padding: 10px 20px;
+  border-radius: 20px;
+
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #b20710;
+}
+
+/* User */
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  color: white;
+  font-weight: 600;
+}
+
+/* Logout */
+
+.logout-btn {
+  background: crimson;
+  color: white;
+
+  border: none;
+  border-radius: 20px;
+
+  padding: 10px 20px;
+
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: 0.3s;
 }
 
-.icons i:hover {
-  color: #e50914;
+.logout-btn:hover {
+  background: #b00020;
 }
-</style>
 
-/* ===============================
-   TABLET
-================================= */
+/* Tablet */
 
 @media (max-width: 992px) {
-
   .navbar {
     padding: 0 30px;
   }
 
-  .menu {
-    gap: 20px;
+  .search-box input {
+    width: 150px;
   }
-
 }
 
-/* ===============================
-   MOBILE
-================================= */
+/* Mobile */
 
 @media (max-width: 768px) {
-
   .navbar {
     padding: 0 20px;
-    height: 60px;
-  }
-
-  .logo {
-    font-size: 22px;
   }
 
   .menu {
-    gap: 12px;
+    display: none;
+  }
+
+  .search-box input {
+    width: 100px;
+  }
+
+  .login-btn,
+  .logout-btn {
+    padding: 8px 15px;
     font-size: 14px;
   }
 
-  .icons {
-    gap: 12px;
-    font-size: 18px;
+  .username {
+    display: none;
   }
-
 }
+</style>
