@@ -1,7 +1,10 @@
 <template>
   <div>
     <Navbar />
-    <HeroBanner />
+    <HeroBanner
+      v-if="heroMovie"
+      :movie="heroMovie"
+    />
 
     <SearchBar @search="handleSearch" />
 
@@ -48,12 +51,16 @@ import SearchBar from "@/components/SearchBar.vue";
 import { getMovies } from "@/services/movieService";
 
 const movies = ref([]);
+const heroMovie = ref(null);
+
 const trendingMovies = ref([]);
 const popularMovies = ref([]);
 const filteredMovies = ref([]);
 
 onMounted(async () => {
   movies.value = await getMovies();
+
+  heroMovie.value = movies.value[0];
 
   trendingMovies.value = movies.value.filter(
     (movie) => movie.category === "Trending"

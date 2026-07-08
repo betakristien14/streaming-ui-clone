@@ -1,15 +1,15 @@
 <template>
-  <section class="hero">
+  <section
+    class="hero"
+    :style="{ backgroundImage: `url(${movie.image})` }"
+  >
     <div class="overlay">
       <div class="content">
         <span class="tag">STREAMFLIX ORIGINAL</span>
 
-        <h1>The Last Kingdom</h1>
+        <h1>{{ movie.title }}</h1>
 
-        <p>
-          Seorang pejuang Saxon harus memilih antara keluarga yang
-          membesarkannya dan tanah kelahirannya.
-        </p>
+        <p>{{ movie.description }}</p>
 
         <div class="buttons">
           <button class="play">
@@ -28,15 +28,20 @@
 </template>
 
 <script setup>
+defineProps({
+  movie: {
+    type: Object,
+    required: true,
+  },
+});
 </script>
 
 <style scoped lang="scss">
 .hero {
   height: 90vh;
-
-  background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .overlay {

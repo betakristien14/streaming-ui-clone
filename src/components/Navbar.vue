@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="['navbar', { scrolled: isScrolled}]">
     <div class="logo">
       StreamFlix
     </div>
@@ -19,19 +19,49 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped lang="scss">
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 70px;
-  background: #141414;
-  color: white;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 0 60px;
+  box-sizing: border-box;
+
+  background: transparent;
+  color: white;
+
+  transition: background-color 0.3s ease;
+
+  z-index: 1000;
+}
+
+.scrolled {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(8px);
 }
 
 .logo {
