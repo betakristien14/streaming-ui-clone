@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-card">
+  <div class="movie-card" @click="goToDetail">
     <img :src="movie.image" :alt="movie.title" />
 
     <div class="movie-info">
@@ -14,12 +14,20 @@
 </template>
 
 <script setup>
-defineProps({
+import { useRouter } from "vue-router";
+
+const props = defineProps({
   movie: {
     type: Object,
     required: true,
   },
 });
+
+const router = useRouter();
+
+const goToDetail = () => {
+  router.push(`/movie/${props.movie.id}`);
+};
 </script>
 
 <style scoped lang="scss">
